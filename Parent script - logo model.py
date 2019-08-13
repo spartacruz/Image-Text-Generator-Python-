@@ -1,15 +1,19 @@
 from PIL import Image, ImageFont, ImageDraw
 import ctypes
 
-f = open("C:\\Users\\yuri\\Documents\\Yuri's work\\0. Assorted\\_Script\\_image processing\\Python\\1. Logo Model Number\\_text\\modelNumber.txt", 'r+', encoding='utf-8')
+master_dir = "C:\\Users\\yuri\\Documents\\Yuri's work\\0. Assorted\\_Script\\_image processing\\Python\\1. Logo Model Number\\"
+text_dir = master_dir + "_text\\"
+image_dir = master_dir + "_image\\"
+
+f = open(text_dir + "modelNumber.txt", 'r+', encoding='utf-8')
 modelNumber = [line for line in f.read().splitlines()]
 f.close()
 
-f = open("C:\\Users\\yuri\\Documents\\Yuri's work\\0. Assorted\\_Script\\_image processing\\Python\\1. Logo Model Number\\_text\\nameFileSource.txt", 'r+', encoding='utf-8')
+f = open(text_dir + "nameFileSource.txt", 'r+', encoding='utf-8')
 nameFileSource = [line for line in f.read().splitlines()]
 f.close()
 
-f = open("C:\\Users\\yuri\\Documents\\Yuri's work\\0. Assorted\\_Script\\_image processing\\Python\\1. Logo Model Number\\_text\\nameFileSaveSimpen.txt", 'r+', encoding='utf-8')
+f = open(text_dir + "nameFileSaveSimpen.txt", 'r+', encoding='utf-8')
 nameFileSave = [line for line in f.read().splitlines()]
 f.close()
 
@@ -19,7 +23,7 @@ errorExport = 0
 if len(nameFileSource) == len(modelNumber) & len(nameFileSource) == len(nameFileSave):
 	hitung = range(len(nameFileSource))
 	for i in hitung:
-		dirLoad = "C:\\Users\\yuri\\Documents\\Yuri's work\\0. Assorted\\_Script\\_image processing\\Python\\1. Logo Model Number\\_image\\before\\"
+		dirLoad = image_dir + "before\\"
 		
 		try:
 			img = Image.open(dirLoad + nameFileSource[i])
@@ -43,7 +47,7 @@ if len(nameFileSource) == len(modelNumber) & len(nameFileSource) == len(nameFile
 
 		draw.text(((lebar - lebarBaru)/2, 875), textToWrite, fill=000000 ,font=font, align="center")
 
-		dirSave = "C:\\Users\\yuri\\Documents\\Yuri's work\\0. Assorted\\_Script\\_image processing\\Python\\1. Logo Model Number\\_image\\after\\"
+		dirSave = image_dir + "after\\"
 		img.save(dirSave + nameFileSave[i])
 		totalExport = totalExport + 1
 else:
